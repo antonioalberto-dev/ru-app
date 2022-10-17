@@ -1,16 +1,8 @@
-# app_ru
+# 📱 App Meu RU
 
-A new Flutter project.
+Aplicação desenvolvida durante para mentoria do minicurso Primeiros Passos com Flutter, ministrada na Semana Nacional de Ciência e Tecnologia.
+## 🚀 Para iniciar
 
-## Getting Started
+É importante que as dependencia do Flutter estejam devidamente instaladas na máquina. 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Dessa forma,  Recomenda-se utilizar o seguinte link [Tutorial de Instalação do Flutter](https://www.youtube.com/atch?v=X3GYPwShlCs) para auxiliar na instalação do framework. Em caso de duvidas, consultar documentação do Flutter para instalação pelo link [Documentação](https://docs.flutter.dev/get-started/install).
