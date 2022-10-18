@@ -32,12 +32,48 @@ class _MyHomePageState extends State<MyHomePage> {
   double _desjejum = 0;
   double _almoco = 0;
   double _jantar = 0;
+  double _saldoAtual = 10.46;
+  double saldoFixo = 10.46;
 
-  void _incrementCounter() {
+  void _addDesjejum() {
     setState(() {
-      _desjejum += 0.6;
-      _almoco += 1.38;
-      _jantar += 1.40;
+      _desjejum++;
+      _saldoAtual -= 0.6;
+    });
+  }
+
+  void _addAlmoco() {
+    setState(() {
+      _almoco++;
+      _saldoAtual -= 1.38;
+    });
+  }
+
+  void _addJantar() {
+    setState(() {
+      _jantar++;
+      _saldoAtual -= 1.40;
+    });
+  }
+
+  void _removeDesjejum() {
+    setState(() {
+      _desjejum--;
+      _saldoAtual += 0.6;
+    });
+  }
+
+  void _removeAlmoco() {
+    setState(() {
+      _almoco--;
+      _saldoAtual += 1.38;
+    });
+  }
+
+  void _removeJantar() {
+    setState(() {
+      _jantar--;
+      _saldoAtual += 1.40;
     });
   }
 
@@ -52,13 +88,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Column(
-              children: const [
+              children: [
                 Text(
                   'Saldo',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  'R\$ 100,46',
+                  'R\$ ${_saldoAtual.toStringAsFixed(2).replaceAll('.', ',')}',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
                 ),
               ],
@@ -92,28 +128,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Card(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: Text('DEPOSITAR'),
-                  ),
-                  color: Colors.green,
-                ),
-                SizedBox(
-                  width: 120,
-                  child: Card(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      child: Text('SACAR'),
-                    ),
-                    color: Colors.orange,
-                  ),
-                ),
-              ],
-            ),
             Card(
               child: ListTile(
                 leading: const Icon(Icons.food_bank),
@@ -128,14 +142,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.add_circle),
-                      color: Colors.green,
+                      onPressed: () {
+                        if (_saldoAtual > 0.60) _addDesjejum();
+                      },
+                      icon: const Icon(Icons.add_circle),
+                      color: const Color.fromRGBO(32, 183, 140, 1),
                     ),
-                    Text('1'),
+                    Text(_desjejum.toInt().toString()),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.remove_circle),
+                      onPressed: () {
+                        if (_desjejum > 0 && _saldoAtual <= saldoFixo)
+                          _removeDesjejum();
+                      },
+                      icon: const Icon(Icons.remove_circle),
                       color: Colors.red,
                     )
                   ],
@@ -144,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Card(
               child: ListTile(
-                leading: Icon(Icons.food_bank),
+                leading: const Icon(Icons.food_bank),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -156,14 +175,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.add_circle),
-                      color: Colors.green,
+                      onPressed: () {
+                        if (_saldoAtual > 1.38) _addAlmoco();
+                      },
+                      icon: const Icon(Icons.add_circle),
+                      color: const Color.fromRGBO(32, 183, 140, 1),
                     ),
-                    Text('1'),
+                    Text(_almoco.toInt().toString()),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.remove_circle),
+                      onPressed: () {
+                        if (_almoco > 0 && _saldoAtual <= saldoFixo)
+                          _removeAlmoco();
+                      },
+                      icon: const Icon(Icons.remove_circle),
                       color: Colors.red,
                     )
                   ],
@@ -172,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Card(
               child: ListTile(
-                leading: Icon(Icons.food_bank),
+                leading: const Icon(Icons.food_bank),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -184,14 +208,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.add_circle),
-                      color: Colors.green,
+                      onPressed: () {
+                        if (_saldoAtual > 1.40) _addJantar();
+                      },
+                      icon: const Icon(Icons.add_circle),
+                      color: const Color.fromRGBO(32, 183, 140, 1),
                     ),
-                    Text('1'),
+                    Text(_jantar.toInt().toString()),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.remove_circle),
+                      onPressed: () {
+                        if (_jantar > 0 && _saldoAtual <= saldoFixo)
+                          _removeJantar();
+                      },
+                      icon: const Icon(Icons.remove_circle),
                       color: Colors.red,
                     )
                   ],
@@ -200,11 +229,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
