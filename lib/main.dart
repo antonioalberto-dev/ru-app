@@ -1,3 +1,4 @@
+import 'package:app_ru/app/marcador_pontos.dart';
 import 'package:app_ru/app/ru.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Meu RU',
+      title: 'SNCT 2022',
       theme: ThemeData(
         fontFamily: 'Inter',
       ),
-      home: const Ru(),
+      home: const MarcadorPontos(),
       debugShowCheckedModeBanner: false,
     );
   }
